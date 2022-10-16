@@ -13,5 +13,10 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        
+        <p>Hello, ${username}</p>
+        <p>logout ahref hyperlink</p>
+        <form action="" method="post">
+            Add items: <input type="text" name="items">
     </body>
 </html>
