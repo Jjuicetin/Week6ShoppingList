@@ -47,23 +47,37 @@ public class ShoppingListServlet extends HttpServlet {
          HttpSession session = request.getSession(); //create session
          String action = request.getParameter("action");
          String username = request.getParameter("username");
-         ArrayList<String> itemList = new ArrayList<>();
+         ArrayList<String> itemList;
          
-     
+         
+       
+        if(session.getAttribute("itemList") == null){
+               itemList = new ArrayList<>();
+        }
+       else{
+              itemList = (ArrayList<String>) session.getAttribute("items");
+        }
         
         
         
         if (action.equals("register")){
             session.setAttribute("username", username);
+            session.setAttribute("itemList", itemList);
             //arraylist
         }
         if(action.equals("add")){
-            
+            String item = request.getParameter("items");
+            itemList.add(item);
+            session.setAttribute("itemList", itemList);
         }
         if(action.equals("delete")){
-            
+            String item = request.getParameter("items");
+            itemList.remove(item);
+             session.setAttribute("itemList", itemList);
+                 
         }
-        
+        //max length of list
+        int counter = itemList.size();
         
         
         
