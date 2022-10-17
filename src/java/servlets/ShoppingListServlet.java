@@ -20,8 +20,16 @@ public class ShoppingListServlet extends HttpServlet {
             throws ServletException, IOException {
         
          HttpSession session = request.getSession(); //create session
-         String username = (String) session.getAttribute("username"); //username session 
+         String username = (String) session.getAttribute("username"); //username session
+         String action = request.getParameter("action");
      
+          //if user presses logout link, kill session and direct back to register.
+         if(action != null && action.equals("logout")){
+            session.invalidate();
+            getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+        }
+         
+                //if there is a exsisting session send them to SHOP LIST
               if (username != null) {
             getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request, response);
               }
@@ -37,9 +45,35 @@ public class ShoppingListServlet extends HttpServlet {
             throws ServletException, IOException {
       
          HttpSession session = request.getSession(); //create session
+         String action = request.getParameter("action");
          String username = request.getParameter("username");
          ArrayList<String> itemList = new ArrayList<>();
-        getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request, response);
+         
+     
+        
+        
+        
+        if (action.equals("register")){
+            session.setAttribute("username", username);
+            //arraylist
+        }
+        if(action.equals("add")){
+            
+        }
+        if(action.equals("delete")){
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+           getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request, response);
     }
 
    

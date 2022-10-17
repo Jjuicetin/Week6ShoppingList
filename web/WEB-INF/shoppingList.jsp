@@ -15,7 +15,9 @@
         <h1>Hello World!</h1>
         
         <p>Hello, ${username}</p>
-        <p>logout ahref hyperlink</p>
+        <p><a href="ShoppingList?action=logout">logout</a></p>
+        
+        <h4>Your Shopping list: </h4>
         <form action="" method="post">
             Add items: <input type="text" name="items">
     </body>
